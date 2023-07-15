@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Login Screen',
       home: LoginScreen(),
     );
@@ -28,58 +29,89 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('UpAcademy'),
-        backgroundColor: Colors.blueAccent,
+        
+        title: const Text('UpAcademy'),
+        backgroundColor: const Color.fromARGB(255, 91, 115, 156),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextField(
-            controller: emailController,
-            decoration: InputDecoration(
-              labelText: 'Email',
+      
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+      
+            TextField(
+              
+              controller: emailController,
+              decoration: InputDecoration(
+                hintText: "Enter your email",
+                labelText: 'Email',
+                prefixIcon: const Icon(Icons.email),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  
+                ),
+              ),
             ),
-          ),
-          TextField(
-            controller: passwordController,
-            decoration: InputDecoration(
-              labelText: 'Password',
+            const SizedBox(
+              height: 30,
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              String email = emailController.text;
-              String password = passwordController.text;
-
-              if (email == 'flutter@gmail.com' && password == 'upacademy') {
-                navigateToBusinessCardScreen(context);
-              } else {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text('Invalid Credentials'),
-                      content: Text('Please enter valid email and password.'),
-                      actions: [
-                        TextButton(
-                          child: Text('OK'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
-              }
-            },
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            
+            TextField(
+              controller: passwordController,
+              
+              decoration: InputDecoration(
+                hintText: "Enter your password",
+                labelText: 'Password',
+                prefixIcon: const Icon(Icons.remove_red_eye),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  
+                  
+                ),
+              ),
             ),
-            child: Text('Login'),
-          ),
-        ],
+            const SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+              
+              onPressed: () {
+                String email = emailController.text;
+                String password = passwordController.text;
+                
+      
+                if (email == 'flutter@gmail.com' && password == 'upacademy') {
+                  navigateToBusinessCardScreen(context);
+                } else {
+                  (
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text('Invalid Credentials'),
+                        content: const Text('Please enter valid email and password.'),
+                        actions: [
+                          TextButton(
+                            child: const Text('OK'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 91, 115, 156)),
+              ),
+              child: const Text('Login'),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -90,42 +122,44 @@ class BusinessCardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return Scaffold(
-      backgroundColor: Color(0xffccae6b),
+      backgroundColor: const Color(0xffccae6b),
       appBar: AppBar(
-        backgroundColor: Color(0xffccae6b),
+        backgroundColor: const Color(0xffccae6b),
         
-        title: Text('Business Card'),
+        title: const Text('Business Card'),
         
       ),
+      
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircleAvatar(
+          const CircleAvatar(
             radius: 120,
             backgroundImage: AssetImage('image/menna.jpeg'),
           ),
-          Text(
+          const Text(
             'Menna Ahmed',
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 32,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Text(
+          const Text(
             'Software Engineer',
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 32,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 50),
+          const SizedBox(height: 20),
           Container(
-           margin: EdgeInsets.all(20),
-           padding: EdgeInsets.all(10),
+           margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
             color: Colors.white,
             
-            child: Row(
+            child: const Row(
               children: [
                  SizedBox(width: 20),
                 Icon(
@@ -134,7 +168,6 @@ class BusinessCardScreen extends StatelessWidget {
                   color: Color(0xFF2B475E),
                 ),
                 SizedBox(width: 20),
-                
                 Text(
                   '01100812422',
                   style: TextStyle(fontSize: 24),
@@ -143,12 +176,12 @@ class BusinessCardScreen extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Container(
-           margin: EdgeInsets.all(20),
-          padding: EdgeInsets.all(10),
+           margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
             color: Colors.white,
-            child: Row(
+            child: const Row(
               children: [
                  SizedBox(width: 20),
                 Icon( 
@@ -158,7 +191,7 @@ class BusinessCardScreen extends StatelessWidget {
                 ),
                 SizedBox(width: 20),
                 Text(
-                  'menna.a.afarag@gmail.com',
+                  'menna.farag@gmail.com',
                   style: TextStyle(fontSize: 24),
                 ),
                 Spacer(flex: 2),

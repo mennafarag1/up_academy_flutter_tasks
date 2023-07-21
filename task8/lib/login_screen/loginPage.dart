@@ -58,7 +58,7 @@ class _LoginPage extends State<LoginPage> {
         leading: const Icon(Icons.menu),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding:  EdgeInsets.all(20.00),
         child: Column(
           children: [
             // email field
@@ -102,33 +102,42 @@ class _LoginPage extends State<LoginPage> {
               hintText: 'Enter Your phone',
               validator: phoneValidator,
             ),
-            const SizedBox(height: 20),
-            // Button
-            MaterialButton(
-              onPressed: () {
-                if (Form.of(context).validate()) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => BusinessCardScreen(
-                        email: emailController.text,
-                        password: passwordController.text,
-                        name: nameController.text,
-                        phone: phoneController.text,
-                      ),
-                    ),
-                  );
-                }
-              },
-              
-              minWidth: 100,
-              height: 40,
-              child:  Text(
-                'Login',
-                
-               
-              ),
-            ),
+            SizedBox(height: 20),
+          MaterialButton(
+  onPressed: () {
+    // Validate each field separately
+    bool isEmailValid = emailValidator(emailController.text) == null;
+    bool isPasswordValid = passwordValidator(passwordController.text) == null;
+    bool isNameValid = nameValidator(nameController.text) == null;
+    bool isPhoneValid = phoneValidator(phoneController.text) == null;
+
+    if (isEmailValid && isPasswordValid && isNameValid && isPhoneValid) {
+      // All fields are valid, navigate to the next screen.
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => BusinessCardScreen(
+            email: emailController.text,
+            password: passwordController.text,
+            name: nameController.text,
+            phone: phoneController.text,
+          ),
+        ),
+      );
+    } else {
+      // Perform actions in case any of the fields is not valid.
+      // For example, you can show an error message or perform other tasks.
+      // Here, I'm just printing a message to the console.
+      print("Please fill in all required fields correctly.");
+    }
+  },
+  minWidth: 100,
+  height: 40,
+  child: Text(
+    'Login',
+  ),
+),// Button
+           
           ],
         ),
       ),
@@ -146,7 +155,7 @@ Widget textField({
   String? Function(String?)? validator,
 }) {
   return Padding(
-    padding: const EdgeInsets.all(8.00),
+    padding:  EdgeInsets.all(8.00),
     child: TextFormField(
       controller: controller,
       obscureText: obscureText,
@@ -180,7 +189,7 @@ Widget textField({
               ),
        
       ),
-      validator: validator,
+      
     ),
   );
 }
